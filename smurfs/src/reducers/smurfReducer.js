@@ -57,7 +57,7 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: '',
-                smurfs: action.payload
+                smurfs: [...state.smurfs, action.payload]
             }
 
         default:

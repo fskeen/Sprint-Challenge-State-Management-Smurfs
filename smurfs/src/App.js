@@ -15,10 +15,10 @@ function App ({titleFX, getData, title, error, smurfs, isLoading, addingSmurf, p
 
       <AddSmurfForm postData={postData} addingSmurf={addingSmurf} smurfs={smurfs} />
 
-      {console.log(smurfs)}
+      {console.log("smurfs in APP", smurfs)}
       <button onClick={() => getData()}>Get some smurfs!</button>
-      {!smurfs ? <p>Loading!</p> :
-        smurfs.map(smurf => <Smurf key={smurf.id} smurfs={smurfs}/>)}
+      {!smurfs.length ? <p>Loading!</p> :
+        smurfs.map(smurf => <Smurf key={smurf.id} smurf={smurf}/>)}
 
     </div>
   );

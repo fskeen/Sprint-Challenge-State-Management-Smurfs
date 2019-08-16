@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 
 function AddSmurfForm ({addingSmurf, postData, smurfs}) {
 
-    let height = 0
-    const [tempSmurf, setTempSmurf] = useState({ name: "", age: 0, height: height + "cm"})
+    const [tempSmurf, setTempSmurf] = useState({ name: "", age: 0, height: 0 + "cm"})
 
     return (
         <form onSubmit={(e) => {
@@ -27,7 +26,7 @@ function AddSmurfForm ({addingSmurf, postData, smurfs}) {
             <input
                 type="number"
                 id="height"
-                onChange={(e) => height = e.target.value}></input>
+                onChange={(e) => setTempSmurf({...tempSmurf, height: e.target.value + "cm"})}></input>
 
             <button type="submit">Add that smurf</button>
 
