@@ -29,7 +29,7 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 error: '',
-                smurfs: [...state.smurfs, action.payload]
+                smurfs: [...state.smurfs, action.payload[0]]
             }
 
         default:
