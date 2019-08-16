@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function AddSmurfForm ({addingSmurf, postData, smurf}) {
+function AddSmurfForm ({addingSmurf, postData, smurfs}) {
 
     let height = 0
     const [tempSmurf, setTempSmurf] = useState({ name: "", age: 0, height: height + "cm"})
@@ -9,6 +9,7 @@ function AddSmurfForm ({addingSmurf, postData, smurf}) {
         <form onSubmit={(e) => {
             e.preventDefault()
             postData(tempSmurf)
+            console.log(smurfs)
         }}>
             <label htmlFor="name">Enter name of smurf</label>
             <input

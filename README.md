@@ -23,10 +23,24 @@ In this challenge, you are to build the Smurfs village once again, only this tim
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+It helps avoid prop drilling when you need to get a prop many levels deep.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+The store is a repository of state. There is only one store in a redux application. Actions are like messages that contain instructions. It sends instructions which are then carried out by the reducer, which take in an action and returns the next state.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+Application state is global while component state is local. Application state is state that is stored in something like a centralized database for state (such as the store in Redux). Component state is defined in a component itself. Redux is great for storing state that many components need to access, and which you are okay with many components having access to. It's also useful if you need to track changes to state. Local state is probably better for small or extremely individual pieces of state, such as whether someone has opened an accordion menu or selected an option in a form.
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+Redux Thunk is a middleware that allows us to dispatch actions asynchronously. It changes action creators by letting us return a function instead of an object.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+I can see the utility of redux, but at the level of project I'm working on, I prefer using component state and context api, which are quicker and more flexible. Failing that, I am alright with Redux to store major pieces of state while I still use component state in small cases.
 
 ## Project Set Up
 

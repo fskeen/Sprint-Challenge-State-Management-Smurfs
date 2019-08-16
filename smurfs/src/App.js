@@ -17,7 +17,8 @@ function App ({titleFX, getData, title, error, smurfs, isLoading, addingSmurf, p
 
       {console.log(smurfs)}
       <button onClick={() => getData()}>Get some smurfs!</button>
-      {smurfs.map(smurf => <Smurf key={smurf.id} smurf={smurf}/>)}
+      {!smurfs ? <p>Loading!</p> :
+        smurfs.map(smurf => <Smurf key={smurf.id} smurfs={smurfs}/>)}
 
     </div>
   );
