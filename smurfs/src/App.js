@@ -2,15 +2,19 @@ import React from "react";
 import "./App.css";
 
 import { connect } from 'react-redux';
-import { titleFX, getData } from './actions'
+import { titleFX, getData, postData } from './actions'
 import Smurf from "./components/Smurf";
+import AddSmurfForm from "./components/AddSmurfForm";
 
-function App ({titleFX, getData, title, error, smurfs, isLoading}) {
+function App ({titleFX, getData, title, error, smurfs, isLoading, addingSmurf, postData}) {
 
   return (
     <div className="App">
       <h1>{title}</h1>
       <button onClick={() => titleFX()}>Change title</button>
+
+      <AddSmurfForm postData={postData} addingSmurf={addingSmurf} smurfs={smurfs} />
+
       {console.log(smurfs)}
       <button onClick={() => getData()}>Get some smurfs!</button>
       {smurfs.map(smurf => <Smurf key={smurf.id} smurf={smurf}/>)}
@@ -25,13 +29,14 @@ const mapStateToProps = state => {
     title: state.title,
     error: state.error,
     smurfs: state.smurfs,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    addingSmurf: state.addingSmurf
   }
 }
 
 const ConnectedApp = connect(
   mapStateToProps,
-  { titleFX, getData }
+  { titleFX, getData, postData }
 )(App)
 
 export default ConnectedApp;
