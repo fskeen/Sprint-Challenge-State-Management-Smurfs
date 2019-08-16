@@ -6,6 +6,9 @@ import {
   POST_SMURF_START,
   POST_SMURF_SUCCESS,
   POST_SMURF_FAILURE,
+  DELETE_SMURF_START,
+  DELETE_SMURF_SUCCESS,
+  DELETE_SMURF_FAILURE,
 } from '../actions'
 
 const initialState = {
@@ -26,7 +29,7 @@ export const reducer = (state = initialState, action) => {
         case 'FAKE_TITLE':
             return {
                 ...state,
-                title: "Hello from the store!"
+                title: "Hello from the Smurf Village!"
             }
         case FETCH_SMURF_START:
             return {
@@ -46,6 +49,7 @@ export const reducer = (state = initialState, action) => {
                 ...state,
                 addingSmurf: action.payload
             }
+        
         case POST_SMURF_START:
             return {
                 ...state,
@@ -59,7 +63,19 @@ export const reducer = (state = initialState, action) => {
                 error: '',
                 smurfs: [...state.smurfs, action.payload]
             }
-
+        case DELETE_SMURF_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: ''
+            }
+        case DELETE_SMURF_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                smurfs: state.smurfs
+            }
         default:
             return state;
     }
