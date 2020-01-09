@@ -2,7 +2,6 @@ import {
   FETCH_SMURF_START,
   FETCH_SMURF_SUCCESS,
   FETCH_SMURF_FAILURE,
-  ADD_SMURF,
   POST_SMURF_START,
   POST_SMURF_SUCCESS,
   POST_SMURF_FAILURE,
@@ -15,13 +14,7 @@ const initialState = {
     title: "Hmmm, I need a new title.",
     isLoading: false,
     error: '',
-    smurfs: [],
-    addingSmurf: {
-        name: "",
-        age: 0,
-        height: "",
-        id: "" 
-    }
+    smurfs: []
 }
 
 export const reducer = (state = initialState, action) => {
@@ -44,11 +37,6 @@ export const reducer = (state = initialState, action) => {
                 error: '',
                 smurfs: action.payload
             }
-        case ADD_SMURF:
-            return {
-                ...state,
-                addingSmurf: action.payload
-            }
         
         case POST_SMURF_START:
             return {
@@ -56,12 +44,16 @@ export const reducer = (state = initialState, action) => {
                 isLoading: true,
                 error: ''
             }
+            /** --- COMMENT ---------------------------------------
+             * 
+             * The two reducer functions below handle the responses from the server, whether successful or errored out. At THIS point, the temp smurf object I passed into my postData function doesn't even matter, since it's only used in the post request.
+             */
         case POST_SMURF_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 error: '',
-                smurfs: [...state.smurfs, action.payload]
+                smurfs: action.payload
             }
         case DELETE_SMURF_START:
             return {

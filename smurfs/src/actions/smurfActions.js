@@ -22,7 +22,7 @@ export const titleFX = () => {
 }
 
 export const getData = () => {
-    return dispatch => {
+    return (dispatch) => {
       dispatch({ type: FETCH_SMURF_START });
       axios
         .get('http://localhost:3333/smurfs')
@@ -36,23 +36,27 @@ export const getData = () => {
     };
 };
 
-export const addSmurf = (smurfData) => {
-    return { type: ADD_SMURF, payload: smurfData }
-}
 
 export const deleteSmurf = (smurf) => {
     console.log("deleteSMURF invoked using: ", smurf)
     return { type: DELETE_SMURF, payload: smurf }
 }
-
-export const postData = (smurf) => {
+/** --- COMMENT ---------------------------------------
+ * 
+ * This postData action takes in the temp smuf object from my AddSmurfForm. It returns a dispatch that will run that will:
+ * 1. set POST_SMURF_START, which basically sets a "loading" condition
+ * 2. POST the smurf to the database
+ * 3A. handle a successful response and update state accordingly by dispatching POST_SMURF_SUCCESS, or...
+ * 3B. handle an error response by dispatching POST_SMURF_FAILURE.
+ */
+export const postData = (smurf) => { 
     return dispatch => {
       dispatch({ type: POST_SMURF_START });
       axios
         .post('http://localhost:3333/smurfs', smurf)
         .then(res => {
-        //   console.log(res);
-          dispatch({ type: POST_SMURF_SUCCESS, payload: res });
+          console.log("res here", res.data);
+          dispatch({ type: POST_SMURF_SUCCESS, payload: res.data });
         })
         .catch(err => {
           dispatch({ type: POST_SMURF_FAILURE, payload: err.response });
